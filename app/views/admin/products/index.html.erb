@@ -1,0 +1,27 @@
+<h1>Products</h1>
+
+<!-- I'm a comment -->
+
+<%# I'm a Ruby comment %>
+
+<p><%= link_to "Add New Product", new_admin_product_path, class: 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Created At</th>
+  </tr>
+  <% for product in @products %>
+    <tr>
+      <td><%= link_to product.id, admin_product_path(product) %></td>
+      <td><%= link_to product.name, admin_product_path(product) %></td>
+      <td><%= number_to_currency product.price %></td>
+      <td>
+        <%= time_ago_in_words product.created_at %> ago
+        <%= product.created_at.strftime('%a, %b %e %Y') %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,5 @@
+<h1><%= @product.name %></h1>
+
+<p><%= @product.description %></p>
+
+<%= link_to "Add to cart", add_to_cart_path(@product.id), class: 'btn btn-success', method: 'post' %>

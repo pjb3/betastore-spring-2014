@@ -1,0 +1,21 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Products", admin_products_path %></li>
+  <li class="active"><%= @product.name %></li>
+</ol>
+
+<p>
+  <%= image_tag @product.image_url, alt: @product.name, style: 'max-width: 600px' %>
+</p>
+
+<p>
+  Price: <%= @product.price %>
+</p>
+
+<p>
+  <%= link_to "Edit product", edit_admin_product_path(@product), class: 'btn btn-primary' %>
+  <%= link_to "Delete product",
+        admin_product_path(@product),
+        method: 'delete',
+        data: { confirm: 'Are you sure you want to delete this product?' },
+        class: 'btn btn-danger' %>
+</p>

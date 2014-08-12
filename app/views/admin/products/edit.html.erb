@@ -1,0 +1,7 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Products", admin_products_path %></li>
+  <li><%= link_to @product.name, admin_product_path(@product) %></li>
+  <li class="active">Edit Product</li>
+</ol>
+
+<%= render 'form' %>

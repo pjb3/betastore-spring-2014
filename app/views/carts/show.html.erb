@@ -1,0 +1,28 @@
+<h1>Shopping Cart</h1>
+
+<table class="table">
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Base Price</th>
+    <th>Total Price</th>
+  </tr>
+  <%= form_for @order, url: order_path, html: { method: 'put' } do |f| %>
+    <%= f.fields_for :line_items do |li| %>
+      <% line_item = li.object %>
+      <%= li.hidden_field :product_id %>
+      <tr>
+        <td><%= line_item.product.name %></td>
+        <td><%= li.number_field :quantity %></td>
+        <td><%= number_to_currency line_item.product.price %></td>
+        <td><%= number_to_currency line_item.total_price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3">
+        <%= f.submit "Update Cart", class: 'btn btn-success' %>
+      </td>
+      <td><%= number_to_currency @order.total_price %></td>
+    </tr>
+  <% end %>
+</table>
