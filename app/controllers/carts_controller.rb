@@ -13,15 +13,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    @order = Order.new
-
-    session[:cart].each do |product_id, quantity|
-      @order.line_items.build(
-        product: Product.find(product_id),
-        quantity: quantity
-      )
-    end
-
+    @order = Order.from_cart(session[:cart])
   end
 
 end

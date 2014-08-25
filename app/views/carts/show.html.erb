@@ -21,6 +21,7 @@
     <tr>
       <td colspan="3">
         <%= f.submit "Update Cart", class: 'btn btn-success' %>
+        <%= link_to "Checkout", checkout_path, class: 'btn btn-primary' %>
       </td>
       <td><%= number_to_currency @order.total_price %></td>
     </tr>

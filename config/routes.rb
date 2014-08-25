@@ -9,6 +9,9 @@ Betastore::Application.routes.draw do
   post '/products/:product_id/add_to_cart' => 'carts#update', as: 'add_to_cart'
   get '/cart' => 'carts#show', as: 'cart'
 
+  get  '/checkout' => 'orders#new', as: 'checkout'
+  post '/checkout' => 'orders#create'
+
   put '/order' => 'orders#update', as: 'order'
 
   namespace :admin do

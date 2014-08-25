@@ -1,0 +1,63 @@
+<h1>Checkout</h1>
+
+<%= form_for @order, url: checkout_path do |f| %>
+  <table class="table">
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Base Price</th>
+      <th>Total Price</th>
+    </tr>
+    <%= f.fields_for :line_items do |li| %>
+      <% line_item = li.object %>
+      <%= li.hidden_field :product_id %>
+      <%= li.hidden_field :quantity %>
+      <tr>
+        <td><%= line_item.product.name %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency line_item.product.price %></td>
+        <td><%= number_to_currency line_item.total_price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3">
+      </td>
+      <td><%= number_to_currency @order.total_price %></td>
+    </tr>
+  </table>
+
+  <%= link_to "Edit Order", cart_path, class: 'btn btn-primary' %>
+
+  <div class="row">
+    <%= f.fields_for :credit_card do |cc| %>
+      <div class="col-md-6">
+        <h2>Credit Card Information</h2>
+
+        <div class="form-group">
+          <%= cc.label :number, class: "col-sm-2 control-label "%>
+          <div class="col-sm-10">
+            <%= cc.text_field :number, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= cc.label :expiration_date, class: "col-sm-2 control-label "%>
+          <div class="col-sm-10">
+            <%= cc.text_field :expiration_date, class: 'form-control' %>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+
+    <%= f.fields_for :shipping_address do |sa| %>
+      <div class="col-md-6">
+        <h2>Shipping Information</h2>
+
+
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
+

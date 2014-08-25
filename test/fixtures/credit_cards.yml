@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 
+  number: MyString
+  expiration_date: MyString
+
+two:
+  customer_id: 
+  number: MyString
+  expiration_date: MyString
